@@ -6,6 +6,9 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
+import com.example.grzegorzkwasniewski.speakloududacity.recordingView.RecordingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.settingsViewButton)
     FloatingActionButton settingsViewButton;
 
-    private Context mContext;
     private Intent mIntent;
 
     // endregion
@@ -39,5 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        mRecordingViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(mRecordingViewButton.getContext(), RecordingActivity.class);
+                startActivity(mIntent);
+            }
+        });
     }
 }

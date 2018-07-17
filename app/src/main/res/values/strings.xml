@@ -7,4 +7,9 @@
     <string name="go_to_saved_records_button">Go to saved records button</string>
     <string name="go_to_settings_button">Go to settings button</string>
 
+    <!-- Recording View -->
+
+    <string name="title_activity_recording">Record audio</string>
+
+
 </resources>
