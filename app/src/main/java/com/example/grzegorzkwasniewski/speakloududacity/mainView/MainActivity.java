@@ -1,6 +1,5 @@
-package com.example.grzegorzkwasniewski.speakloududacity;
+package com.example.grzegorzkwasniewski.speakloududacity.mainView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.recordingView.RecordingActivity;
 
 import butterknife.BindView;

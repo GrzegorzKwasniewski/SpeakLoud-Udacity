@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".mainView.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
         <activity
             android:name=".recordingView.RecordingActivity"
             android:label="@string/title_activity_recording"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".mainView.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
