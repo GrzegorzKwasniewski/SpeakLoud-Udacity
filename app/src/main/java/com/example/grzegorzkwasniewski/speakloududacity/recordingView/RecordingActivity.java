@@ -26,6 +26,10 @@ public class RecordingActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new RecordingFragment())
+                .commit();
+
     }
     // endregion
 }
