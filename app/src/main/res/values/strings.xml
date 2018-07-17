@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SpeakLoudUdacity</string>
+
+    <!-- MainView -->
+
+    <string name="go_to_record_screen_button">Go to record screen button</string>
+    <string name="go_to_saved_records_button">Go to saved records button</string>
+    <string name="go_to_settings_button">Go to settings button</string>
+
 </resources>
