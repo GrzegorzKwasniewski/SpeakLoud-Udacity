@@ -12,4 +12,8 @@
     <string name="title_activity_recording">Record audio</string>
 
 
+    <!-- ConfirmationDialog Dialog -->
+    <string name="confirmation_maessage">Recording was saved</string>
+
+
 </resources>
