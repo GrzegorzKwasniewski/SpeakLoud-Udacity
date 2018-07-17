@@ -3,6 +3,7 @@ package com.example.grzegorzkwasniewski.speakloududacity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton mRecordingViewButton;
     @BindView(R.id.recordsViewButton)
     FloatingActionButton mRecordsViewButton;
-    @BindView(R.id.constraintLayout)
+    @BindView(R.id.settingsViewButton)
     FloatingActionButton settingsViewButton;
 
     private Context mContext;
