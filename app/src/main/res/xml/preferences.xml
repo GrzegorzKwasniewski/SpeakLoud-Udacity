@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    android:title="test title for category"
+    android:key="pref_key_storage_settings">
+    
+    <Preference
+        android:key="@string/pref_about_key"
+        android:summary="@string/pref_about_summary"
+        android:title="@string/pref_about_title" />
+</PreferenceScreen>
