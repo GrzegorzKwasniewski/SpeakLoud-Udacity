@@ -27,4 +27,9 @@
     <string name="pref_app_theme">App theme</string>
     <string name="pref_nfc_enabled">NFC enabled</string>
 
+    <!-- About Alert -->
+    <string name="about_alert_title">About</string>
+    <string name="about_alert_message">\nMIT License\n\nCopyright &#169; 2017 Grzegorz Kwasniewski\n\nContact:\ncontact@grzegorzkwasniewski.com\n\nversion 1.0</string>
+
+
 </resources>

@@ -16,7 +16,7 @@ import com.example.grzegorzkwasniewski.speakloududacity.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PreferencesFragmenet extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class PreferencesFragmnet extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     // region Class Fields
 
@@ -28,7 +28,7 @@ public class PreferencesFragmenet extends PreferenceFragment implements SharedPr
     //endregion
 
     //region Constructors
-    public PreferencesFragmenet() {
+    public PreferencesFragmnet() {
     }
     //endregion
 
