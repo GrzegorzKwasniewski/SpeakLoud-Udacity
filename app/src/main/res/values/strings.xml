@@ -15,5 +15,16 @@
     <!-- ConfirmationDialog Dialog -->
     <string name="confirmation_maessage">Recording was saved</string>
 
+    <!-- Preferences Keys-->
+    <string name="pref_nfc_key">pref_nfc</string>
+    <string name="pref_about_key">pref_about</string>
+    <string name="pref_app_theme_key">pref_app_theme</string>
+    <string name="pref_about_summary">tap to get more info</string>
+
+    <!-- Preferences -->
+    <string name="pref_about_title">About</string>
+    <string name="pref_app_version">version</string>
+    <string name="pref_app_theme">App theme</string>
+    <string name="pref_nfc_enabled">NFC enabled</string>
 
 </resources>
