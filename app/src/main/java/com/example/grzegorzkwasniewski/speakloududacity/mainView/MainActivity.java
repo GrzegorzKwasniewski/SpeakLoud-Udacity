@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.recordingView.RecordingActivity;
+import com.example.grzegorzkwasniewski.speakloududacity.settingsView.SettingsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mIntent = new Intent(mRecordingViewButton.getContext(), RecordingActivity.class);
+                startActivity(mIntent);
+            }
+        });
+
+        settingsViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(settingsViewButton.getContext(), SettingsActivity.class);
                 startActivity(mIntent);
             }
         });

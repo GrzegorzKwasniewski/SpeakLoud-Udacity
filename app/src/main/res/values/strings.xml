@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">SpeakLoudUdacity</string>
 
+    <!-- Toolbar -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_recordings">Saved Records</string>
+
     <!-- MainView -->
 
     <string name="go_to_record_screen_button">Go to record screen button</string>
@@ -29,7 +34,7 @@
 
     <!-- About Alert -->
     <string name="about_alert_title">About</string>
-    <string name="about_alert_message">\nMIT License\n\nCopyright &#169; 2017 Grzegorz Kwasniewski\n\nContact:\ncontact@grzegorzkwasniewski.com\n\nversion 1.0</string>
+    <string name="about_alert_message">\nMIT License\n\nCopyright &#169; 2018 Grzegorz Kwasniewski\n\nContact:\ncontact@grzegorzkwasniewski.com\n\nversion 1.0</string>
 
 
 </resources>
