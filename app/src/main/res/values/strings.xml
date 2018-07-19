@@ -36,5 +36,20 @@
     <string name="about_alert_title">About</string>
     <string name="about_alert_message">\nMIT License\n\nCopyright &#169; 2018 Grzegorz Kwasniewski\n\nContact:\ncontact@grzegorzkwasniewski.com\n\nversion 1.0</string>
 
-
+    <!-- Audio Files View -->
+    <string name="file_share_dialog">Share file</string>
+    <string name="file_rename_rename">Rename file</string>
+    <string name="file_delete_dialog">Delete file</string>
+    <string name="options_dialog_title">Options</string>
+    <string name="action_cancel_dialog">Cancel</string>
+    <string name="send_to">Send to</string>
+    <string name="title_rename_dialog">Rename file</string>
+    <string name="action_ok_dialog">OK</string>
+    <string name="file_exists_toast">File with this name already exists</string>
+    <string name="delete_file_dialog">Delete saved recording</string>
+    <string name="delete_file_message_dialog">Want to delete file?</string>
+    <string name="confirm_delete_dialog">OK to delete</string>
+    <string name="cancel_delete_dialog">Don\'t delete</string>
+    <string name="file_deleted_message">Recording was deleted</string>
+    <string name="action_search">Search</string>
 </resources>
