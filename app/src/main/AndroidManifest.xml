@@ -25,6 +25,13 @@
         </activity>
 
         <activity
+            android:name=".audioFilesView.AudioFilesActivity"
+            android:label="@string/title_activity_audio_files"
+            android:parentActivityName=".mainView.MainActivity"
+            android:theme="@style/WhiteText">
+        </activity>
+
+        <activity
             android:name=".settingsView.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".mainView.MainActivity"

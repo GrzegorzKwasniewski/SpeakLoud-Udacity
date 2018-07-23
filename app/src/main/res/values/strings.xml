@@ -37,6 +37,7 @@
     <string name="about_alert_message">\nMIT License\n\nCopyright &#169; 2018 Grzegorz Kwasniewski\n\nContact:\ncontact@grzegorzkwasniewski.com\n\nversion 1.0</string>
 
     <!-- Audio Files View -->
+    <string name="title_activity_audio_files">Audio Files</string>
     <string name="file_share_dialog">Share file</string>
     <string name="file_rename_rename">Rename file</string>
     <string name="file_delete_dialog">Delete file</string>
@@ -52,4 +53,8 @@
     <string name="cancel_delete_dialog">Don\'t delete</string>
     <string name="file_deleted_message">Recording was deleted</string>
     <string name="action_search">Search</string>
+
+    <!-- RecordService -->
+    <string name="file_name">Sound Recording</string>
+
 </resources>

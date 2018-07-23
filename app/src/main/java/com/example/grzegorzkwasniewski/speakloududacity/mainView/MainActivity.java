@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.grzegorzkwasniewski.speakloududacity.R;
+import com.example.grzegorzkwasniewski.speakloududacity.audioFilesView.AudioFilesActivity;
 import com.example.grzegorzkwasniewski.speakloududacity.recordingView.RecordingActivity;
 import com.example.grzegorzkwasniewski.speakloududacity.settingsView.SettingsActivity;
 
@@ -46,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mIntent = new Intent(mRecordingViewButton.getContext(), RecordingActivity.class);
+                startActivity(mIntent);
+            }
+        });
+
+        mRecordsViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntent = new Intent(settingsViewButton.getContext(), AudioFilesActivity.class);
                 startActivity(mIntent);
             }
         });
