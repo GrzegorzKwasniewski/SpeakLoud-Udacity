@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_play_audio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/file_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="file_name.mp4"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="21dp"
+        tools:layout_conversion_absoluteWidth="354dp"
+        tools:layout_conversion_absoluteX="20dp"
+        tools:layout_conversion_absoluteY="225dp" />
+
+    <TextView
+        android:id="@+id/file_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="7dp"
+        android:text="00:00"
+        app:layout_constraintRight_toRightOf="@+id/file_name"
+        app:layout_constraintTop_toBottomOf="@+id/file_name"
+        tools:layout_conversion_absoluteHeight="16dp"
+        tools:layout_conversion_absoluteWidth="35dp"
+        tools:layout_conversion_absoluteX="328dp"
+        tools:layout_conversion_absoluteY="271dp" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="7dp"
+        android:text="00:00"
+        app:layout_constraintLeft_toLeftOf="@+id/file_name"
+        app:layout_constraintTop_toBottomOf="@+id/file_name"
+        tools:layout_conversion_absoluteHeight="16dp"
+        tools:layout_conversion_absoluteWidth="35dp"
+        tools:layout_conversion_absoluteX="20dp"
+        tools:layout_conversion_absoluteY="271dp" />
+
+    <SeekBar
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintLeft_toLeftOf="@+id/file_name"
+        app:layout_constraintRight_toRightOf="@+id/file_name"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        tools:layout_conversion_absoluteHeight="18dp"
+        tools:layout_conversion_absoluteWidth="364dp"
+        tools:layout_conversion_absoluteX="10dp"
+        tools:layout_conversion_absoluteY="253dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/play_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_play_arrow_white_48dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_conversion_absoluteHeight="40dp"
+        tools:layout_conversion_absoluteWidth="40dp"
+        tools:layout_conversion_absoluteX="172dp"
+        tools:layout_conversion_absoluteY="290dp" />
+
+</android.support.constraint.ConstraintLayout>
