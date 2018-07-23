@@ -84,6 +84,8 @@ public class RecordService extends Service {
 
     public void startRecording() {
 
+        Log.v("", "startRecording: ");
+
         createFileNameAndPath();
 
         mRecorder = new MediaRecorder();

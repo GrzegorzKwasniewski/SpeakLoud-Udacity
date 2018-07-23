@@ -62,5 +62,7 @@
     <!-- Permission Dialog -->
     <string name="permission_info">I\'m sorry, but You have denied access to microphone or device storage.</string>
 
+    <!-- Record Service-->
+    <string name="recording_service_description">Service for recording audio with Speak Loud app</string>
 
 </resources>

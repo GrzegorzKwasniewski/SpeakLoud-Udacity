@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.grzegorzkwasniewski.speakloududacity">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,6 +40,12 @@
             android:parentActivityName=".mainView.MainActivity"
             android:theme="@style/WhiteText">
         </activity>
+
+        <service
+            android:name=".services.RecordService"
+            android:description="@string/recording_service_description"
+            android:exported="false" />
+
 
     </application>
 
