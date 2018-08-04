@@ -13,20 +13,14 @@ import com.example.grzegorzkwasniewski.speakloududacity.adapter.RecordsAdapter;
 import com.example.grzegorzkwasniewski.speakloududacity.database.RecordDBHelper;
 import com.example.grzegorzkwasniewski.speakloududacity.model.RecordItem;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by grzegorz.kwasniewski on 2018-07-19.
- */
 
 public class AudioFilesActivity extends AppCompatActivity {
-
-    // dokończ ten widok i dodaj PlayAudioFragment
 
     // region Class Constants
     private static final String LOG_TAG = "FileViewerFragment";
