@@ -36,6 +36,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
     //Provides AndroidJUnitRunner
     androidTestCompile ('com.android.support.test:runner:0.4.1') {
         exclude group: 'com.android.support', module: 'appcompat'
@@ -78,3 +81,5 @@ dependencies {
 
 
 }
+
+apply plugin: 'com.google.gms.google-services'

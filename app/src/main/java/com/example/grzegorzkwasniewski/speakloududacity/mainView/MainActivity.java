@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Intent mIntent;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     // endregion
     private AdView mAdView;
 
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -58,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
         mRecordingViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "recordinView");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                 mIntent = new Intent(mRecordingViewButton.getContext(), RecordingActivity.class);
                 startActivity(mIntent);
             }
@@ -66,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         mRecordsViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "audioFilesView");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                 mIntent = new Intent(settingsViewButton.getContext(), AudioFilesActivity.class);
                 startActivity(mIntent);
             }
@@ -74,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
         settingsViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "settingsView");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                 mIntent = new Intent(settingsViewButton.getContext(), SettingsActivity.class);
                 startActivity(mIntent);
             }
