@@ -32,6 +32,9 @@ import com.example.grzegorzkwasniewski.speakloududacity.services.RecordService;
 
 import java.io.File;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by grzegorz.kwasniewski on 2018-07-17.
  */
@@ -48,9 +51,13 @@ public class RecordingFragment extends Fragment implements RecordService.Service
     private int storagePermissonGranted;
 
     private RecordService mService;
-    private Chronometer mChronometer = null;
-    private FloatingActionButton mRecordButton = null;
-    private CoordinatorLayout mCoordinatorLayout = null;
+
+    @BindView(R.id.chronometer)
+    Chronometer mChronometer;
+    @BindView(R.id.record_button)
+    FloatingActionButton mRecordButton;
+    @BindView(R.id.myCoordinatorLayout)
+    CoordinatorLayout mCoordinatorLayout;
 
     // Requesting permission to record audio and store files
     private boolean permissionToRecordAccepted = false;
@@ -103,11 +110,8 @@ public class RecordingFragment extends Fragment implements RecordService.Service
         // Inflate the layout for this fragment
         View recordingView = inflater.inflate(R.layout.fragment_recording, container, false);
 
-        mCoordinatorLayout = (CoordinatorLayout) recordingView.findViewById(R.id.myCoordinatorLayout);
+        ButterKnife.bind(this, recordingView);
 
-        mChronometer = (Chronometer) recordingView.findViewById(R.id.chronometer);
-
-        mRecordButton = (FloatingActionButton) recordingView.findViewById(R.id.record_button);
         mRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
