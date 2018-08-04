@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by grzegorz.kwasniewski on 2018-07-19.
  */
@@ -36,10 +39,14 @@ public class AudioFilesActivity extends AppCompatActivity {
     // endregion
 
     // region Class Fields
-    private RecyclerView mRecyclerView;
+
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.rootLayout)
+    ConstraintLayout mRootLayout;
+
     private RecordsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
-    private ConstraintLayout mRootLayout;
 
     private RecordDBHelper mDatabase;
     private List<RecordItem> mModels;
@@ -50,6 +57,9 @@ public class AudioFilesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_files);
+
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,9 +67,6 @@ public class AudioFilesActivity extends AppCompatActivity {
 
         mDatabase = new RecordDBHelper(this);
         mModels = mDatabase.getAllRecords();
-
-        mRootLayout = (ConstraintLayout) findViewById(R.id.rootLayout);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
