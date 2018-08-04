@@ -1,6 +1,8 @@
 package com.example.grzegorzkwasniewski.speakloududacity.services;
 
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.media.MediaRecorder;
 import android.os.Binder;
@@ -11,9 +13,12 @@ import android.util.Log;
 
 import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.database.RecordDBHelper;
+import com.example.grzegorzkwasniewski.speakloududacity.widget.Widget;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by grzegorz.kwasniewski on 2018-07-23.
@@ -114,6 +119,13 @@ public class RecordService extends Service {
         }
 
         mRecorder = null;
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), Widget.class));
+
+        Widget.recordingName = mFileName;
+
+        Widget.updateWidget(getApplicationContext(), appWidgetManager, widgetIDs);
 
         try {
             mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);

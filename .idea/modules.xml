@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SpeakLoudUdacity.iml" filepath="$PROJECT_DIR$/SpeakLoudUdacity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpeakLoud-Udacity.iml" filepath="$PROJECT_DIR$/SpeakLoud-Udacity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
