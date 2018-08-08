@@ -65,4 +65,20 @@
     <!-- Record Service-->
     <string name="recording_service_description">Service for recording audio with Speak Loud app</string>
 
+    <string name="banner_ad">Banner Ad</string>
+    <string name="saved_audio_file">Saved Audio File</string>
+    <string name="audio_file_name">Audio File Name</string>
+    <string name="audio_file_length">Audio File Length</string>
+    <string name="audio_date_created">Audio File Creation Date</string>
+    <string name="about_info">About Info</string>
+    <string name="recording_confirmation">Recording Confirmation</string>
+    <string name="access_denied">Access Denied</string>
+    <string name="audio_progress">Audio Progress</string>
+    <string name="progress_bar">Progress Bar</string>
+    <string name="play_audio_button">Play Audio Button</string>
+    <string name="record_audio_button">Record Audio Button</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="new_name">New Name For Audio File</string>
+    <string name="file_extension">File Extension</string>
+
 </resources>

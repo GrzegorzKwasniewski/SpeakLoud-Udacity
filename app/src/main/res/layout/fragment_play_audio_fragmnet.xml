@@ -11,6 +11,7 @@
 
     <TextView
         android:id="@+id/file_name"
+        android:contentDescription="@string/audio_file_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -30,6 +31,7 @@
 
     <TextView
         android:id="@+id/file_length"
+        android:contentDescription="@string/audio_file_length"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="0dp"
@@ -44,6 +46,7 @@
 
     <TextView
         android:id="@+id/progress"
+        android:contentDescription="@string/audio_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -58,6 +61,7 @@
 
     <SeekBar
         android:id="@+id/search_bar"
+        android:contentDescription="@string/progress_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -74,6 +78,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/play_button"
+        android:contentDescription="@string/play_audio_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
