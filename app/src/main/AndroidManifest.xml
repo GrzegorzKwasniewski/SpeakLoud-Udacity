@@ -46,7 +46,11 @@
             android:description="@string/recording_service_description"
             android:exported="false" />
 
-
+        <receiver android:name=".widget.Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
