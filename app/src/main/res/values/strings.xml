@@ -80,5 +80,10 @@
     <string name="chronometer">Chronometer</string>
     <string name="new_name">New Name For Audio File</string>
     <string name="file_extension">File Extension</string>
+    <string name="mp4">.mp4</string>
+    <string name="file_name_mp4">file_name.mp4</string>
+    <string name="_00_00">00:00</string>
+    <string name="mmm_dd_yyyy_hh_mm_a">mmm dd yyyy - hh:mm a</string>
+    <string name="widget">Widget</string>
 
 </resources>

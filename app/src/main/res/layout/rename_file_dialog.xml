@@ -19,6 +19,6 @@
         android:contentDescription="@string/file_extension"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=".mp4" />
+        android:text="@string/mp4" />
 
 </LinearLayout>
