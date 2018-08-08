@@ -41,7 +41,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
 
     private static final String LOG_TAG = "FileViewerAdapter";
 
-    private RecordDBHelper mDatabase;
+    private List<RecordItem> mModels;
     private final Comparator<RecordItem> mComparator;
 
     private RecordItem item;
@@ -49,10 +49,11 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
     private LinearLayoutManager mLayoutManager;
     private ConstraintLayout mRootLayout;
 
-    public RecordsAdapter(Context context, LinearLayoutManager linearLayoutManager, ConstraintLayout rootLayout , Comparator<RecordItem> comparator) {
+    public RecordsAdapter(Context context, List<RecordItem> models, LinearLayoutManager linearLayoutManager, ConstraintLayout rootLayout , Comparator<RecordItem> comparator) {
         super();
         mContext = context;
-        mDatabase = new RecordDBHelper(mContext);
+        mModels = models;
+        Log.d("fdfdfdfdfdfdf", "fdfdfdfdfdfdf" + models.size());
         mLayoutManager = linearLayoutManager;
         mRootLayout = rootLayout;
         mComparator = comparator;
@@ -72,8 +73,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
 
     @Override
     public void onBindViewHolder(final RecordingsViewHolder holder, int position) {
-
-        item = mDatabase.getItemAt(position);
+        item = mModels.get(position);
         long itemDuration = item.getRecordLength();
 
         long minutes = TimeUnit.MILLISECONDS.toMinutes(itemDuration);
@@ -96,7 +96,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
             public void onClick(View v) {
                 try {
                     PlayAudioFragment playbackFragment =
-                            new PlayAudioFragment().newInstance(mDatabase.getItemAt(holder.getAdapterPosition()));
+                            new PlayAudioFragment().newInstance(mModels.get(holder.getAdapterPosition()));
 
                     FragmentTransaction transaction = ((FragmentActivity) mContext)
                             .getSupportFragmentManager()
@@ -184,7 +184,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
 
     @Override
     public int getItemCount() {
-        return mDatabase.countRecords();
+        return mModels.size();
     }
 
     public static class RecordingsViewHolder extends RecyclerView.ViewHolder {
@@ -205,7 +205,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
     public void shareFileDialog(int position) {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(mDatabase.getItemAt(position).getFilePath())));
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(mModels.get(position).getFilePath())));
         shareIntent.setType("audio/mp4");
         mContext.startActivity(Intent.createChooser(shareIntent, mContext.getText(R.string.send_to)));
     }
@@ -291,9 +291,9 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
 
         } else {
             //file name is unique, rename file
-            File oldFilePath = new File(mDatabase.getItemAt(position).getFilePath());
+            File oldFilePath = new File(mModels.get(position).getFilePath());
             oldFilePath.renameTo(file);
-            mDatabase.renameRecordItem(mDatabase.getItemAt(position), name, mFilePath);
+            //mDatabase.renameRecordItem(mModels.get(position), name, mFilePath);
 
             // notify recycler view that data was changed
             notifyItemChanged(position);
@@ -302,7 +302,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
 
     public void delteRecordItem(int position) {
         //delete file from storage
-        File file = new File(mDatabase.getItemAt(position).getFilePath());
+        File file = new File(mModels.get(position).getFilePath());
         file.delete();
 
         // TODO Change to snack bar
@@ -311,7 +311,7 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.Recordin
         //Toast.makeText(mContext, mContext.getString(R.string.file_deleted_message), Toast.LENGTH_SHORT
         //).show();
 
-        mDatabase.removeItemWithId(mDatabase.getItemAt(position).getmDatabaseID());
+        //mDatabase.removeItemWithId(mDatabase.getItemAt(position).getmDatabaseID());
 
         // notify recycler view that data was changed
         notifyItemRemoved(position);

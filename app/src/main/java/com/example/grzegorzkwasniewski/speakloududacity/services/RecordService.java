@@ -3,16 +3,21 @@ package com.example.grzegorzkwasniewski.speakloududacity.services;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.grzegorzkwasniewski.speakloududacity.DatabaseContent.DBContract;
 import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.database.RecordDBHelper;
+import com.example.grzegorzkwasniewski.speakloududacity.mainView.MainActivity;
 import com.example.grzegorzkwasniewski.speakloududacity.widget.Widget;
 
 import java.io.File;
@@ -127,12 +132,27 @@ public class RecordService extends Service {
 
         Widget.updateWidget(getApplicationContext(), appWidgetManager, widgetIDs);
 
-        try {
-            mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
+        addToDatabase(mFileName, mFilePath, mElapsedMillis);
 
-        } catch (Exception e){
-            Log.e(LOG_TAG, "Something went wrong", e);
-        }
+//        try {
+//            mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
+//
+//        } catch (Exception e){
+//            Log.e(LOG_TAG, "Something went wrong", e);
+//        }
+    }
+
+    private void addToDatabase(String fileName, String filePath, long time) {
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DBContract.Entry.COLUMN_TITLE, fileName);
+        contentValues.put(DBContract.Entry.COLUMN_PATH, filePath);
+        contentValues.put(DBContract.Entry.COLUMN_LENGHT, time);
+        contentValues.put(DBContract.Entry.COLUMN_TIME_ADDED, System.currentTimeMillis());
+
+        Uri uri = getContentResolver().insert(DBContract.Entry.CONTENT_URI, contentValues);
+
     }
 
     public void createFileNameAndPath(){

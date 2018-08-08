@@ -51,6 +51,11 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name=".DatabaseContent.AppContentProvider"
+            android:authorities="com.example.grzegorzkwasniewski.speakloududacity.DatabaseContent.AppContentProvider"
+        android:exported="false" />
     </application>
 
 </manifest>

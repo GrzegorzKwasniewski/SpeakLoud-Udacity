@@ -1,5 +1,6 @@
 package com.example.grzegorzkwasniewski.speakloududacity.audioFilesView;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +8,16 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
+import com.example.grzegorzkwasniewski.speakloududacity.DatabaseContent.DBContract;
+import com.example.grzegorzkwasniewski.speakloududacity.DatabaseContent.AudioFilesAsyncLoader;
 import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.adapter.RecordsAdapter;
 import com.example.grzegorzkwasniewski.speakloududacity.database.RecordDBHelper;
 import com.example.grzegorzkwasniewski.speakloududacity.model.RecordItem;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -42,7 +47,6 @@ public class AudioFilesActivity extends AppCompatActivity {
     private RecordsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
 
-    private RecordDBHelper mDatabase;
     private List<RecordItem> mModels;
     // endregion
 
@@ -59,8 +63,39 @@ public class AudioFilesActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mDatabase = new RecordDBHelper(this);
-        mModels = mDatabase.getAllRecords();
+        List recordsItems = new ArrayList<>();
+
+        String[] projection = {
+                DBContract.Entry._ID,
+                DBContract.Entry.COLUMN_TITLE,
+                DBContract.Entry.COLUMN_PATH,
+                DBContract.Entry.COLUMN_LENGHT,
+                DBContract.Entry.COLUMN_TIME_ADDED
+        };
+
+        AudioFilesAsyncLoader loader = new AudioFilesAsyncLoader(
+                this,
+                DBContract.Entry.CONTENT_URI,
+                projection,
+                null,
+                null);
+
+        Cursor cursor = loader.loadInBackground();
+
+        while (cursor.moveToNext()) {
+            RecordItem item = new RecordItem();
+            item.setDatabaseID(cursor.getInt(cursor.getColumnIndex(DBContract.Entry._ID)));
+            item.setFileName(cursor.getString(cursor.getColumnIndex(DBContract.Entry.COLUMN_TITLE)));
+            item.setFilePath(cursor.getString(cursor.getColumnIndex(DBContract.Entry.COLUMN_PATH)));
+            item.setRecordLength(cursor.getInt(cursor.getColumnIndex(DBContract.Entry.COLUMN_LENGHT)));
+            item.setRecordTime(cursor.getLong(cursor.getColumnIndex(DBContract.Entry.COLUMN_TIME_ADDED)));
+
+            recordsItems.add(item);
+        }
+
+        mModels = recordsItems;
+
+        cursor.close();
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -74,7 +109,7 @@ public class AudioFilesActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // specify an adapter
-        mAdapter = new RecordsAdapter(this, mLayoutManager, mRootLayout ,ALPHABETICAL_COMPARATOR);
+        mAdapter = new RecordsAdapter(this, mModels, mLayoutManager, mRootLayout ,ALPHABETICAL_COMPARATOR);
         mRecyclerView.setAdapter(mAdapter);
     }
     // endregion
