@@ -96,12 +96,42 @@ public class RecordingFragment extends Fragment implements RecordService.Service
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (savedInstanceState != null) {
+            mStartRecording = savedInstanceState.getBoolean("start");
+            Log.d("fsfsfsdfsdfsdf", "fr" + mStartRecording);
+        }
+
         recordAudioPermissonGranted = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.RECORD_AUDIO);
         storagePermissonGranted = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         ActivityCompat.requestPermissions(getActivity(), permissions, 0);
+
+        Log.d("fsfsfsdfsdfsdf", "fr4" + mStartRecording);
+
+
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+//
+//        if (savedInstanceState != null) {
+//            mStartRecording = savedInstanceState.getBoolean("start");
+//            Log.d("fsfsfsdfsdfsdf", "fr" + mStartRecording);
+//        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // zapisz sobie to user defaults
+
+        Log.d("fsfsfsdfsdfsdf", "fr2" + mStartRecording);
+        outState.putBoolean("start", mStartRecording);
+        //Save the fragment's state here
     }
 
     @Override
@@ -117,8 +147,7 @@ public class RecordingFragment extends Fragment implements RecordService.Service
             public void onClick(View v) {
 
                 if (recordAudioPermissonGranted == PackageManager.PERMISSION_GRANTED && storagePermissonGranted == PackageManager.PERMISSION_GRANTED) {
-                    onRecord(mStartRecording);
-                    mStartRecording = !mStartRecording;
+                    onRecord();
                 } else {
                     try {
                         PermissionDialogFragment playbackFragment =
@@ -143,11 +172,15 @@ public class RecordingFragment extends Fragment implements RecordService.Service
 
     //region Private Methods
     //TODO: recording pause
-    private void onRecord(boolean start){
+    private void onRecord(){
 
         Intent intent = new Intent(getActivity(), RecordService.class);
 
-        if (start) {
+        Log.d("fsfsfsdfsdfsdf", "fr3" + mStartRecording);
+
+        if (mStartRecording) {
+
+            mStartRecording = false;
 
             mRecordButton.setImageResource(R.drawable.ic_stop_white_48dp);
 
@@ -165,21 +198,32 @@ public class RecordingFragment extends Fragment implements RecordService.Service
             mChronometer.start();
 
             //start RecordingService
-            getActivity().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+            getContext().startService(intent);
+            //getContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
             //keep screen on while recording
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         } else {
+
+            mStartRecording = true;
+
             //stop recording
             mRecordButton.setImageResource(R.drawable.ic_mic_white_48dp);
 
             mChronometer.stop();
             mChronometer.setBase(SystemClock.elapsedRealtime());
 
-            getActivity().unbindService(mConnection);
+            getContext().stopService(intent);
+
+            //getActivity().unbindService(mConnection);
             //allow the screen to turn off again once recording is finished
             getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /** Defines callbacks for service binding, passed to bindService() */

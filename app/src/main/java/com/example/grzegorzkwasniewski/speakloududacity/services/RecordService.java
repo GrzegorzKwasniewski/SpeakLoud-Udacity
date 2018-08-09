@@ -85,6 +85,7 @@ public class RecordService extends Service {
 
     @Override
     public void onDestroy() {
+        Log.d("fsfsfsdfsdfsdf", "destroy");
         if (mRecorder != null) {
             stopRecording();
         }
@@ -134,12 +135,6 @@ public class RecordService extends Service {
 
         addToDatabase(mFileName, mFilePath, mElapsedMillis);
 
-//        try {
-//            mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
-//
-//        } catch (Exception e){
-//            Log.e(LOG_TAG, "Something went wrong", e);
-//        }
     }
 
     private void addToDatabase(String fileName, String filePath, long time) {
