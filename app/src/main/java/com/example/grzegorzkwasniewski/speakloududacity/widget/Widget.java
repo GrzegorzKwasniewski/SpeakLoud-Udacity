@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.example.grzegorzkwasniewski.speakloududacity.R;
@@ -34,7 +35,7 @@ public class Widget extends AppWidgetProvider {
             intentService.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intentService.setData(Uri.parse(intentService.toUri(Intent.URI_INTENT_SCHEME)));
 
-            //views.setTextViewText(R.id.recipe_name, recordingName);
+            views.setTextViewText(R.id.recipe_name, "All recordings");
             views.setRemoteAdapter(R.id.widgetListView, intentService);
 
             Intent intent = new Intent(context, AudioFilesActivity.class);

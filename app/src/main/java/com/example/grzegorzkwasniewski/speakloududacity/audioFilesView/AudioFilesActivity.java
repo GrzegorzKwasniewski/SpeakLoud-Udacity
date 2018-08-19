@@ -103,6 +103,7 @@ public class AudioFilesActivity extends AppCompatActivity {
         List<String> recordingsNames = new ArrayList<>();
 
         for (RecordItem record: mModels) {
+            //Log.d("fsdfdsfsdf", "onCreate:" + record.getFileName());
             recordingsNames.add(record.getFileName());
         }
 
