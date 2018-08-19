@@ -93,7 +93,7 @@ public class RecordingFragment extends Fragment implements RecordService.Service
     }
     //endregion
 
-    
+
     //region View State
     @Override
     public void onCreate(Bundle savedInstanceState) {
