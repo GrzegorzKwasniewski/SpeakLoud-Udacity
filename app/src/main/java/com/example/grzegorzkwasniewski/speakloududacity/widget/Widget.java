@@ -5,25 +5,37 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.audioFilesView.AudioFilesActivity;
 
+import java.util.List;
+
 
 public class Widget extends AppWidgetProvider {
 
     public static String recordingName;
+
+    public static List<String> recordingsName;
+    public static String EXTRA_ITEM = "extra";
 
     private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                         int appWidgetId) {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
-        if(recordingName != null) {
+        if(recordingsName != null) {
 
-            views.setTextViewText(R.id.recipe_name, recordingName);
+            Intent intentService = new Intent(context, StackWidgetService.class);
+
+            intentService.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            intentService.setData(Uri.parse(intentService.toUri(Intent.URI_INTENT_SCHEME)));
+
+            //views.setTextViewText(R.id.recipe_name, recordingName);
+            views.setRemoteAdapter(R.id.widgetListView, intentService);
 
             Intent intent = new Intent(context, AudioFilesActivity.class);
 

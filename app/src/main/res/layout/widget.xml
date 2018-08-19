@@ -19,4 +19,20 @@
         android:textStyle="bold|italic"
         tools:text="Widget text" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <ListView
+            android:id="@+id/widgetListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_light_background"
+            android:divider="#eeeeee"
+            android:dividerHeight="1dp"
+            tools:listitem="@layout/collection_widget_list_item"></ListView>
+    </LinearLayout>
+
+
 </RelativeLayout>

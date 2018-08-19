@@ -85,7 +85,6 @@ public class RecordService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d("fsfsfsdfsdfsdf", "destroy");
         if (mRecorder != null) {
             stopRecording();
         }
@@ -120,18 +119,14 @@ public class RecordService extends Service {
         mElapsedMillis = (System.currentTimeMillis() - mStartingTimeMilliseconds);
         mRecorder.release();
 
-        if (serviceCallbacks != null) {
-            serviceCallbacks.showConfirmationDialog();
-        }
-
         mRecorder = null;
 
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), Widget.class));
-
-        Widget.recordingName = mFileName;
-
-        Widget.updateWidget(getApplicationContext(), appWidgetManager, widgetIDs);
+//        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+//        int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), Widget.class));
+//
+//        Widget.recordingName = mFileName;
+//
+//        Widget.updateWidget(getApplicationContext(), appWidgetManager, widgetIDs);
 
         addToDatabase(mFileName, mFilePath, mElapsedMillis);
 

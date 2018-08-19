@@ -1,5 +1,7 @@
 package com.example.grzegorzkwasniewski.speakloududacity.audioFilesView;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -16,6 +18,7 @@ import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.adapter.RecordsAdapter;
 import com.example.grzegorzkwasniewski.speakloududacity.database.RecordDBHelper;
 import com.example.grzegorzkwasniewski.speakloududacity.model.RecordItem;
+import com.example.grzegorzkwasniewski.speakloududacity.widget.Widget;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -96,6 +99,20 @@ public class AudioFilesActivity extends AppCompatActivity {
         mModels = recordsItems;
 
         cursor.close();
+
+        List<String> recordingsNames = new ArrayList<>();
+
+        for (RecordItem record: mModels) {
+            recordingsNames.add(record.getFileName());
+        }
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), Widget.class));
+
+        Widget.recordingsName = recordingsNames;
+
+        Widget.updateWidget(getApplicationContext(), appWidgetManager, widgetIDs);
+
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

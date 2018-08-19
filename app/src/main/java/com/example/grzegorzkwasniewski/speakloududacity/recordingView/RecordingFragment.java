@@ -29,8 +29,10 @@ import com.example.grzegorzkwasniewski.speakloududacity.R;
 import com.example.grzegorzkwasniewski.speakloududacity.audioFilesView.PermissionDialogFragment;
 import com.example.grzegorzkwasniewski.speakloududacity.popUp.ConfirmationDialog;
 import com.example.grzegorzkwasniewski.speakloududacity.services.RecordService;
+import com.example.grzegorzkwasniewski.speakloududacity.services.SPHelper;
 
 import java.io.File;
+import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,15 +93,11 @@ public class RecordingFragment extends Fragment implements RecordService.Service
     }
     //endregion
 
+    
     //region View State
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (savedInstanceState != null) {
-            mStartRecording = savedInstanceState.getBoolean("start");
-            Log.d("fsfsfsdfsdfsdf", "fr" + mStartRecording);
-        }
 
         recordAudioPermissonGranted = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.RECORD_AUDIO);
@@ -108,30 +106,6 @@ public class RecordingFragment extends Fragment implements RecordService.Service
 
         ActivityCompat.requestPermissions(getActivity(), permissions, 0);
 
-        Log.d("fsfsfsdfsdfsdf", "fr4" + mStartRecording);
-
-
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//
-//        if (savedInstanceState != null) {
-//            mStartRecording = savedInstanceState.getBoolean("start");
-//            Log.d("fsfsfsdfsdfsdf", "fr" + mStartRecording);
-//        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // zapisz sobie to user defaults
-
-        Log.d("fsfsfsdfsdfsdf", "fr2" + mStartRecording);
-        outState.putBoolean("start", mStartRecording);
-        //Save the fragment's state here
     }
 
     @Override
@@ -166,8 +140,20 @@ public class RecordingFragment extends Fragment implements RecordService.Service
             }
         });
 
+        if (SPHelper.getRecordingState(getContext()) == false) {
+            mRecordButton.setImageResource(R.drawable.ic_stop_white_48dp);
+
+            long time = System.currentTimeMillis() - SPHelper.getStartTime(getContext());
+
+            mChronometer.setBase(SystemClock.elapsedRealtime() - time);
+
+            mChronometer.start();
+
+        }
+
         return recordingView;
     }
+
     //endregion
 
     //region Private Methods
@@ -176,11 +162,12 @@ public class RecordingFragment extends Fragment implements RecordService.Service
 
         Intent intent = new Intent(getActivity(), RecordService.class);
 
-        Log.d("fsfsfsdfsdfsdf", "fr3" + mStartRecording);
+        mStartRecording = SPHelper.getRecordingState(getContext());
 
-        if (mStartRecording) {
+        if (SPHelper.getRecordingState(getContext())) {
 
             mStartRecording = false;
+            SPHelper.setRecordingState(getContext(), false);
 
             mRecordButton.setImageResource(R.drawable.ic_stop_white_48dp);
 
@@ -197,15 +184,18 @@ public class RecordingFragment extends Fragment implements RecordService.Service
             mChronometer.setBase(SystemClock.elapsedRealtime());
             mChronometer.start();
 
+            //mStartingTimeMilliseconds = System.currentTimeMillis();
+            SPHelper.setStartTime(getContext(), System.currentTimeMillis());
+
             //start RecordingService
             getContext().startService(intent);
-            //getContext().bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
             //keep screen on while recording
             getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         } else {
 
             mStartRecording = true;
+            SPHelper.setRecordingState(getContext(), true);
 
             //stop recording
             mRecordButton.setImageResource(R.drawable.ic_mic_white_48dp);
@@ -213,9 +203,12 @@ public class RecordingFragment extends Fragment implements RecordService.Service
             mChronometer.stop();
             mChronometer.setBase(SystemClock.elapsedRealtime());
 
+            SPHelper.setStartTime(getContext(), 0l);
+
             getContext().stopService(intent);
 
-            //getActivity().unbindService(mConnection);
+            showConfirmationDialog();
+
             //allow the screen to turn off again once recording is finished
             getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
@@ -224,6 +217,7 @@ public class RecordingFragment extends Fragment implements RecordService.Service
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //mChronometer.stop();
     }
 
     /** Defines callbacks for service binding, passed to bindService() */
